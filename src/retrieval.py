@@ -1,6 +1,8 @@
 import click
 import os
 import torch
+import torch.nn as nn
+import torch.nn.functional as F
 import numpy as np
 import pandas as pd
 import optuna
@@ -28,11 +30,11 @@ VALID_TASKS = ['family', 'fold', 'superfamily']
 
 def load_dataset_from_task(task):
   if task == 'family':
-    dataset = load_dataset("SaeedLab/ProtEnrich", data_dir="remote_homology_family")['train']
+    dataset = load_dataset("SaeedLab/ProtEnrich", data_dir="remote_homology_family")
   elif task == 'superfamily':
-    dataset = load_dataset("SaeedLab/ProtEnrich", data_dir="remote_homology_superfamily")['train']
+    dataset = load_dataset("SaeedLab/ProtEnrich", data_dir="remote_homology_superfamily")
   elif task == 'fold':
-    dataset = load_dataset("SaeedLab/ProtEnrich", data_dir="remote_homology_fold")['train']
+    dataset = load_dataset("SaeedLab/ProtEnrich", data_dir="remote_homology_fold")
   else:
     raise ValueError(f"Invalid task: {task}")
   return Dataset.from_dict(dataset['train'][:10])
@@ -61,7 +63,7 @@ def compute_similarity_matrix(embeddings):
   embeddings = F.normalize(embeddings, dim=1)
   return embeddings @ embeddings.T
 
-def retrieval(embeddings, ids, k_list=(10)):
+def retrieval(embeddings, ids, k_list=(10, )):
   N = embeddings.size(0)
   sim = compute_similarity_matrix(embeddings)
 

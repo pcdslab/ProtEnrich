@@ -43,7 +43,7 @@ def main(dataset_name):
   if dataset_name == 'pretraining':
     dataset = load_dataset("SaeedLab/ProtEnrich", data_dir="pretraining")['train']['prot_id'][:10]
   elif dataset_name == 'out-of-distribution':
-    dataset = load_dataset("SaeedLab/ProtEnrich", data_dir="out-of-distribution")['train'][:10]
+    dataset = load_dataset("SaeedLab/ProtEnrich", data_dir="out-of-distribution")['train']['prot_id'][:10]
   else:
     raise ValueError(f"Invalid dataset: {dataset_name}")
 

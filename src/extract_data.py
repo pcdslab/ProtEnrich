@@ -25,10 +25,10 @@ VALID_MODELS = ['structure', 'dynamics', 'ankh3', 'carp_640m', 'esm1b', 'esm2_t3
 DATASETS = ['pretraining', 'out-of-distribution']
 
 @click.command()
-@click.option('--task', 
+@click.option('--model_name', 
   required=True,
   type=click.Choice(VALID_MODELS),
-  help="Task - structure, dynamics, or sequence models."
+  help="Model name - structure, dynamics, or sequence models."
 )
 @click.option('--dataset_name', 
   required=True,
@@ -37,7 +37,7 @@ DATASETS = ['pretraining', 'out-of-distribution']
   default="pretraining"
 )
 
-def main(task, dataset_name):
+def main(model_name, dataset_name):
   if dataset_name == 'pretraining':
     dataset = load_dataset("SaeedLab/ProtEnrich", data_dir="pretraining")['train'][:10]
     out_path = '../embs_pretraining'
@@ -49,28 +49,28 @@ def main(task, dataset_name):
   else:
     raise ValueError(f"Invalid dataset: {dataset_name}")
   
-  if task == 'structure':
+  if model_name == 'structure':
     extract_structure(dataset, out_path=out_path)
-  elif task == 'dynamics':
+  elif model_name == 'dynamics':
     extract_dyn(dataset, out_path=out_path)
-  elif task == 'ankh3':
+  elif model_name == 'ankh3':
     extract_ankh_3_xl(dataset, out_path=out_path)
-  elif task == 'carp_640m':
+  elif model_name == 'carp_640m':
     extract_carp_640m(dataset, out_path=out_path)
-  elif task == 'esm1b':
+  elif model_name == 'esm1b':
     extract_esm1b(dataset, out_path=out_path)
-  elif task == 'esm2_t36':
+  elif model_name == 'esm2_t36':
     extract_esm2_t36(dataset, out_path=out_path)
-  elif task == 'esmc_600m':
+  elif model_name == 'esmc_600m':
     extract_esmc_600m(dataset, out_path=out_path)
-  elif task == 'progen2':
+  elif model_name == 'progen2':
     extract_progen2(dataset, out_path=out_path)
-  elif task == 'protbert':
+  elif model_name == 'protbert':
     extract_protbert(dataset, out_path=out_path)
-  elif task == 'prott5':
+  elif model_name == 'prott5':
     extract_prott5(dataset, out_path=out_path)
   else:
-    raise ValueError(f"Invalid task: {task}")
+    raise ValueError(f"Invalid model name: {model_name}")
 
 if __name__ == '__main__':
   main()
