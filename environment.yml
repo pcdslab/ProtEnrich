@@ -1,0 +1,30 @@
+name: protenrich
+
+channels:
+  - pytorch
+  - conda-forge
+
+dependencies:
+  - python=3.11
+  - pytorch>=2.6
+  - torchvision
+  - torchaudio
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - transformers>=4.40
+  - datasets
+  - accelerate
+  - sentencepiece
+  - biopython
+  - biotite
+  - optuna
+  - click
+  - tqdm
+  - requests
+  - pip
+  - pip:
+      - fair-esm
+      - sequence-models
+      - git+https://github.com/flatironinstitute/RocketSHP.git
