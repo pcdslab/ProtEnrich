@@ -2,7 +2,7 @@
 
 ProtEnrich: Residual Multimodal Enrichment of Protein Sequence Embeddings
 
-\[[Dataset on HuggingFace](https://huggingface.co/datasets/SaeedLab/ProtEnrich)\] | \[[Model Collection](https://huggingface.co/collections/SaeedLab/ProtEnrich)\] | \[[Cite](#citation)\]
+\[[Dataset on HuggingFace](https://huggingface.co/datasets/SaeedLab/ProtEnrich)\] | \[[Model Collection](https://huggingface.co/collections/SaeedLab/protenrich)\] | \[[Cite](#citation)\]
 
 The paper is under review.
 
