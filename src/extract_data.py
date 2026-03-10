@@ -39,11 +39,11 @@ DATASETS = ['pretraining', 'out-of-distribution']
 
 def main(model_name, dataset_name):
   if dataset_name == 'pretraining':
-    dataset = load_dataset("SaeedLab/ProtEnrich", data_dir="pretraining")['train'][:10]
+    dataset = load_dataset("SaeedLab/ProtEnrich", data_dir="pretraining")['train'][:]
     out_path = '../embs_pretraining'
     os.makedirs('../embs_pretraining', exist_ok=True)
   elif dataset_name == 'out-of-distribution':
-    dataset = load_dataset("SaeedLab/ProtEnrich", data_dir="out-of-distribution")['train'][:10]
+    dataset = load_dataset("SaeedLab/ProtEnrich", data_dir="out-of-distribution")['train'][:]
     out_path = '../embs_out_of_distribution'
     os.makedirs('../embs_out_of_distribution', exist_ok=True)
   else:

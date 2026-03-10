@@ -37,7 +37,7 @@ def load_dataset_from_task(task):
     dataset = load_dataset("SaeedLab/ProtEnrich", data_dir="remote_homology_fold")
   else:
     raise ValueError(f"Invalid task: {task}")
-  return Dataset.from_dict(dataset['train'][:10])
+  return dataset['train']
 
 def generate_embs(dataset, model_name, out_path):
   if model_name == 'ankh3':

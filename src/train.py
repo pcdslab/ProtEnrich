@@ -39,7 +39,7 @@ emb_dim = {
   help="Task - structure, dynamics, or sequence models."
 )
 def main(model_name):
-  dataset = load_dataset("SaeedLab/ProtEnrich", data_dir="pretraining")['train'][:10]
+  dataset = load_dataset("SaeedLab/ProtEnrich", data_dir="pretraining")[:]
   
   dataset_length = list(range(len(dataset['prot_id'])))
   random.seed(42) 
@@ -94,7 +94,7 @@ def main(model_name):
     criterion=criterion
   )
 
-  trainer.train(num_epochs=1)
+  trainer.train(num_epochs=30)
 
 if __name__ == '__main__':
   main()

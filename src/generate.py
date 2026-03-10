@@ -31,7 +31,7 @@ def load_dataset_from_task(task):
     dataset = load_dataset("SaeedLab/ProtEnrich", data_dir='out-of-distribution')
   else:
     raise ValueError(f"Invalid task: {task}")
-  return Dataset.from_dict(dataset['train'][:10])
+  return dataset['train']
 
 def generate_embs(dataset, model_name, out_path):
   if model_name == 'ankh3':

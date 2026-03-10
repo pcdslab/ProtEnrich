@@ -65,7 +65,7 @@ def load_dataset_from_task(task):
     dataset = load_dataset("SaeedLab/ProtEnrich", data_dir="thermostability")
   else:
     raise ValueError(f"Invalid task: {task}")
-  return Dataset.from_dict(dataset['train'][:10]), Dataset.from_dict(dataset['validation'][:10]), Dataset.from_dict(dataset['test'][:10])
+  return dataset['train'], dataset['validation'], dataset['test']
 
 def get_all_sequences(train, val, test):
   full_dataset = concatenate_datasets([train, val, test])
@@ -302,7 +302,7 @@ def main(task, model_name):
 
 
   study = optuna.create_study(direction="maximize", pruner=optuna.pruners.MedianPruner())
-  study.optimize(lambda trial: objective(trial, config), n_trials=1)
+  study.optimize(lambda trial: objective(trial, config), n_trials=100)
   best_params = study.best_trial.params
 
   mean_results, std_results = run_multi_seed_evaluation(config=config, best_params=best_params, models_path=models_path)
